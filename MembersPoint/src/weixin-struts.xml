@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		<package name="weixinAction" extends="struts-default" >
+		<!-- 测试Action -->
+			<action name="mGetIndex" class="com.tianxiafen.action.TestAction" method="getIndex">
+				<result name="success">/index.jsp</result>
+			</action>
+		<!-- 测试Action结束 -->
+			<action name="pointApply" class="com.tianxiafen.weixin.action.PointAboAction" method="pointAbouchemenet">
+				<result name="success">/pages/messageTip.jsp</result>
+				<result name="error" type="redirectAction">pointApply</result>
+				<result name="wait">/pages/help.html</result>
+			</action>
+			<!-- 积分申请（带登录验证） -->
+			<action name="pointLogin" class="com.tianxiafen.weixin.action.PointAboAction" method="pointLogin">
+				<result name="success">/pages/PointApply.jsp</result>
+			</action>
+			<!-- 微信用户登录时自动验证注册 -->
+			<action name="accountSet" class="com.tianxiafen.weixin.action.UserAction" method="verifyUser">
+			</action>
+			<action name="getUserToken" class="com.tianxiafen.weixin.action.UserAction" method="getUserToken">
+				<result name="success">/pages/userInfo.jsp</result>
+			</action>
+			<!-- 完善信息 -->
+			<action name="perfectInfo" class="com.tianxiafen.weixin.action.UserAction" method="perfectInfo">
+				<result name="login" type="redirectAction">testGetUserInfo</result>
+				<result name="success">/pages/userInfo.jsp</result>
+			</action>
+			<action name="testGetUserInfo" class="com.tianxiafen.weixin.action.UserAction" method="testGetUserInfo">
+				<result name="success">/pages/userInfo.jsp</result>
+			</action>
+			
+			<!-- 用户积分记录 -->
+			<action name="pointRecord" class="com.tianxiafen.weixin.action.PointRecordAction" method="pointRecordList">
+				<result name="success">/pages/pointRecord.jsp</result>
+			</action>
+			<action name="recordLogin" class="com.tianxiafen.weixin.action.PointRecordAction" method="recordLogin">
+				<result name="success" type="redirectAction">pointRecord</result>
+			</action>
+			<!-- 验证手机 -->
+			<action name="verifyOldPhone" class="com.tianxiafen.weixin.action.ChangePhoneAction" method="verifyOldPhone">
+				<result name="success">/pages/verifyOldPhone.jsp</result>
+			</action>
+			<action name="verifyLogin" class="com.tianxiafen.weixin.action.ChangePhoneAction" method="verifyLogin">
+				<result name="success">/pages/verifyOldPhone.jsp</result>
+			</action>
+			<action name="verifyCode" class="com.tianxiafen.weixin.action.ChangePhoneAction" method="verifyCode">
+				<result name="success">/pages/verifyNewPhone.jsp</result> 
+				<result name="error">/pages/messageTip.jsp</result> 
+			</action>
+			<action name="verifyNewPhone" class="com.tianxiafen.weixin.action.ChangePhoneAction" method="verifyNewPhone">
+				<result name="success">/pages/messageTip.jsp</result> 
+				<result name="error">/pages/messageTip.jsp</result> 
+			</action>
+			<!-- 积分汇出 -->
+			<action name="pointRemit" class="com.tianxiafen.weixin.action.PointRemitAction" method="pointRemit">
+				<result name="success">/pages/pointRemit.jsp</result>
+			</action>
+			<action name="pointRemitLogin" class="com.tianxiafen.weixin.action.PointRemitAction" method="pointRemitLogin">
+				<result name="success">/pages/messageTip.jsp</result>
+			</action>
+			<action name="addPointRemit" class="com.tianxiafen.weixin.action.PointRemitAction" method="addPointRemit">
+				<result name="success">/pages/messageTip.jsp</result>
+				<result name="error">/pages/pointRemit.jsp</result>
+			</action>
+			<action name="aboutUs" class="com.tianxiafen.weixin.action.AboutUsAction" method="aboutUs">
+				<result name="success">/pages/aboutUs.jsp</result>
+				<result name="error">/pages/messageTip.jsp</result>
+			</action>
+			<action name="futurePlan" class="com.tianxiafen.weixin.action.FuturePlanAction" method="futurePlan">
+				<result name="success">/pages/futurePlan.jsp</result>
+				<result name="error">/pages/messageTip.jsp</result>
+			</action>
+			<action name="businessIntro" class="com.tianxiafen.weixin.action.BusinessIntroAction" method="businessIntro">
+				<result name="success">/pages/businessIntro.jsp</result>
+				<result name="error">/pages/messageTip.jsp</result>
+			</action>
+		</package>
+		
+		<package name="ajaxRequest" extends="json-default">
+			<action name="getPointsByMileage" class="com.tianxiafen.weixin.action.PointRemitAction" method="getPointsByMileage">
+				<result type="json">
+					<param name="root">point</param>
+					<param name="excludeNullProperties">true</param>  
+				</result>
+			</action>
+			<action name="sendVertify" class="com.tianxiafen.weixin.action.UserAction" method="sendVertify">
+				<result type="json">
+					<param name="root">verifyResult</param>
+					<param name="excludeNullProperties">true</param>  
+				</result>
+			</action>
+		</package>
+	</struts>

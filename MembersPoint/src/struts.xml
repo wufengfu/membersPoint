@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		<package name="MembersPoint" extends="struts-default" >
+		<!-- 测试Action -->
+			<action name="getIndex" class="com.tianxiafen.action.TestAction" method="getIndex">
+				<result name="success">/index.jsp</result>
+			</action>		
+		<!-- 测试Action结束 -->
+			<action name="login" class="com.tianxiafen.action.ManagerAction" method="login">
+				<result name="success" type="redirect">/pages/manager/index.jsp</result>
+				<result name="error" type="redirect">/pages/manager/login.jsp</result>
+				<result name="false" type="redirect">/pages/manager/login.jsp</result>
+			</action>
+			<action name="logOut" class="com.tianxiafen.action.ManagerAction" method="logOut">
+				<result name="success" type="redirect">/pages/manager/login.jsp</result>
+			</action>
+			<!-- 汇入申请列表 -->
+			<action name="pointAboList" class="com.tianxiafen.action.PointAboApplyAction" method="pointAboList">
+				<result name="login">/pages/manager/login.jsp</result>
+				<result name="success">/pages/manager/pointAboRecord.jsp</result>
+				<result name="error" type="redirect">/pages/manager/index.jsp</result>
+			</action>
+			<action name="passPointAbo" class="com.tianxiafen.action.PointAboApplyAction" method="passPointAbo">
+				<result name="success" type="redirectAction">pointAboList</result>
+			</action>
+			<action name="backPointAbo" class="com.tianxiafen.action.PointAboApplyAction" method="backPointAbo">
+				<result name="success" type="redirectAction">pointAboList</result>
+			</action>
+			<!-- 汇出申请列表 -->
+			<action name="pointRemitList" class="com.tianxiafen.action.PointRemitApplyAction" method="pointRemitList">
+				<result name="login">/pages/manager/login.jsp</result>
+				<result name="success">/pages/manager/pointRemitRecord.jsp</result>
+				<result name="error" type="redirect">/pages/manager/index.jsp</result>
+			</action>
+			<action name="passPointRemit" class="com.tianxiafen.action.PointRemitApplyAction" method="passPointRemit">
+				<result name="success" type="redirectAction">pointRemitList</result>
+			</action>
+			<action name="effectPointRemit" class="com.tianxiafen.action.PointRemitApplyAction" method="effectPointRemit">
+				<result name="success" type="redirectAction">pointRemitList</result>
+			</action>
+			<action name="backPointRemit" class="com.tianxiafen.action.PointRemitApplyAction" method="backPointRemit">
+				<result name="success" type="redirectAction">pointRemitList</result>
+			</action>
+			<!-- 用户列表 -->
+			<action name="userList" class="com.tianxiafen.action.UserAction" method="userList">
+				<result name="success">/pages/manager/userList.jsp</result>
+				<result name="login">/pages/manager/login.jsp</result>
+				<result name="error">/pages/manager/login.jsp</result>
+			</action>
+			<action name="passVerify" class="com.tianxiafen.action.UserAction" method="passVerify">
+				<result name="success" type="redirectAction">userList</result>
+			</action>
+			<action name="backVerify" class="com.tianxiafen.action.UserAction" method="backVerify">
+				<result name="success" type="redirectAction">userList</result>
+			</action>
+			<action name="favUser" class="com.tianxiafen.action.UserAction" method="favUser">
+				<result name="success" type="redirectAction">userList</result>
+			</action>
+			<!-- 航司列表 -->
+			<action name="getCompanyList" class="com.tianxiafen.action.AirCompanyAction" method="getCompanyList">
+				<result name="success">/pages/manager/airCompany.jsp</result>
+				<result name="login">/pages/manager/login.jsp</result>
+				<result name="error">/pages/manager/login.jsp</result>
+			</action>
+			<action name="addCompany" class="com.tianxiafen.action.AirCompanyAction" method="addCompany">
+				<result name="success" type="redirectAction">getCompanyList</result>
+				<result name="error" type="redirectAction">getCompanyList</result>
+			</action>
+			<action name="updateCompany" class="com.tianxiafen.action.AirCompanyAction" method="updateCompany">
+				<result name="success" type="redirectAction">getCompanyList</result>
+				<result name="error" type="redirectAction">getCompanyList</result>
+			</action>
+			<!-- 积分变动记录列表 -->
+			<action name="pointRecordList" class="com.tianxiafen.action.PointRecordAction" method="pointRecordList">
+				<result name="success">/pages/manager/pointRecord.jsp</result>
+				<result name="login">/pages/manager/login.jsp</result>
+				<result name="error" type="redirectAction">pointRecordList</result>
+			</action>
+			<!-- 短信发送记录列表 -->
+			<action name="messageRecordList" class="com.tianxiafen.action.MessageRecordAction" method="messageRecordList">
+				<result name="success">/pages/manager/messageRecord.jsp</result>
+				<result name="login">/pages/manager/login.jsp</result>
+				<result name="error" type="redirectAction">messageRecordList</result>
+			</action>
+			<!-- 系统变量配置 -->
+			<action name="utilList" class="com.tianxiafen.action.SystemUtilAction" method="utilList">
+				<result name="success">/pages/manager/systemUtilList.jsp</result>
+				<result name="login">/pages/manager/login.jsp</result>
+			</action>
+			<action name="addUtil" class="com.tianxiafen.action.SystemUtilAction" method="addUtil">
+				<result name="success" type="redirectAction">utilList</result>
+			</action>
+			<action name="updateUtil" class="com.tianxiafen.action.SystemUtilAction" method="udpateUtil">
+				<result name="success" type="redirectAction">utilList</result>
+			</action>
+			<!-- 公式配置 -->
+			<action name="formulaList" class="com.tianxiafen.action.FormulaAction" method="formulaList">
+				<result name="success">/pages/manager/formulaList.jsp</result>
+				<result name="login">/pages/manager/login.jsp</result>
+			</action>
+			<action name="udpateFormula" class="com.tianxiafen.action.FormulaAction" method="udpateFormula">
+				<result name="success" type="redirectAction">formulaList</result>
+			</action>
+			<action name="addFormula" class="com.tianxiafen.action.FormulaAction" method="addFormula">
+				<result name="success" type="redirectAction">formulaList</result>
+			</action>
+		</package>
+		<include file="weixin-struts.xml"></include>
+	</struts>
